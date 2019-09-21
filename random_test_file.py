@@ -1,47 +1,24 @@
-# The dictionary will look something like:
-# {'Andrew Chalkley': ['jQuery Basics', 'Node.js Basics'],
-#  'Kenneth Love': ['Python Basics', 'Python Collections']}
-#
-# Each key will be a Teacher and the value will be a list of courses.
-#
-# Your code goes below here.
+# Alright, this one can be tricky but I'm sure you can do it.
 
-dictionary = {"Obama": ["Python Basics", "JavaScript Basics", "HTML/CSS", "GoLang"],
-              "Trump": ["jQuery Basics", "node.js basics", "EmojiCode"],
-              "Kennedy": ["C# Basics", "UNIX"]}
+# Create a function named combo that takes two ordered iterables. 
+# These could be tuples, lists, strings, whatever.
 
-def num_teachers(dict):
-    return len(dict.keys())
+# Your function should return a list of tuples. 
+# Each tuple should hold the first item in each iterable, 
+# then the second set, then the third, and so on. 
+# Assume the iterables will be the same length.
 
-def num_courses(dict):
-    num_of_courses = 0
-    courses = [*dict.values()]
-    for course in courses:
-        num_of_courses += len(course)
-    return num_of_courses
+# Check the code below for an example.
 
-def courses(dict):
-    course_list = []
-    courses = [*dict.values()]
-    for course in courses:
-        course_list.extend(course)
-    return course_list
 
-def most_courses(dict):
-    max_count = 0
-    longest_teacher = ''
-    for teacher in dict:
-        if len(dict[teacher]) > max_count:
-            max_count = len(dict[teacher])
-            longest_teacher = teacher
-    return longest_teacher
+# combo([1, 2, 3], 'abc')
+# Output:
+# [(1, 'a'), (2, 'b'), (3, 'c')]
 
-def stats(dict):
-    num_courses = 0
-    new_list = []
-    for teacher in dict:
-        num_courses = len(dict[teacher])
-        new_list += [[teacher, num_courses]]
-    return print(new_list)
+def combo(iter1, iter2):
+    output = []
+    for i in range(0, len(iter1)):
+        output += (iter1[i], iter2[i]),
+    return output
 
-print(stats(dictionary))
+print(combo([1, 2, 3], 'abc'))
