@@ -38,7 +38,7 @@ def add_to_list(item):
 def show_list():
     clear_screen()
     index = 1
-    for item in shopping_list:
+    for index, item in enumerate(shopping_list, start=1):
         print("{}.  {}\n".format(index, item))
         index += 1
     
