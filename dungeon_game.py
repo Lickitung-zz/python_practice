@@ -27,8 +27,6 @@ CELLS.copy()
 def get_locations():
     return random.sample(CELLS, 3)
 
-    return monster, door, player
-
 def move_player(player, move):
     # get the player's location
     x, y = player
