@@ -28,7 +28,6 @@ def get_locations():
     return random.sample(CELLS, 3)
 
 def move_player(player, move):
-    # get the player's location
     x, y = player
     if move == "LEFT":
         x -= 1
@@ -38,10 +37,6 @@ def move_player(player, move):
         y -= 1
     if move == "DOWN":
         y += 1
-    # if move == LEFT, x - 1
-    # if move == RIGHT, x + 1
-    # if move == Up, y - 1
-    # if move == DOWN, y + 1
     return x, y
 
 def get_moves(player):
@@ -79,23 +74,38 @@ def draw_map(player):
 
 def game_loop():
     monster, door, player = get_locations()
-    while True:
+    playing = True
+
+    while playing:
+        clear_screen()
         draw_map(player)
         valid_moves = get_moves(player)
-        print("You're currently in room {}".format(player)) # fill with player position
-        print("You can move {}".format(", ".join(valid_moves))) #fill with available moves
+        print("You're currently in room {}".format(player)) 
+        print("You can move {}".format(", ".join(valid_moves)))
         print("Enter QUIT to quit")
 
         move = input("> ").upper()
 
         if move == 'QUIT':
+            print("\n ** See you next time! **\n")
             break
         if move in valid_moves:
             player = move_player(player, move)
+
+            if player == monster:
+                print("\n ** Oh no! The monster got you! Better luck next time! **\n")
+                playing = False
+
+            if player == door:
+                print("\n ** You escaped! Congrats! **\n")
+                playing = False
+
         else:
             input("\n ** Walls are hard! Don't run into them! **\n")
-        clear_screen()
-        
+    else:
+        if input("Play again? [Y/n] ").lower() != "n":
+            game_loop()
+
 clear_screen()
 print("Welcome to the dungeon!")
 input("Press return to start!")
